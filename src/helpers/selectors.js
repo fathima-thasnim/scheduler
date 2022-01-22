@@ -4,12 +4,21 @@ export function getAppointmentsForDay(state, dayName) {
       const appointmentIds = day.appointments;
       const appointments = [];
       for (const appointmentId of appointmentIds) {
-        appointments.push(state.appointments[appointmentId]);  
+        appointments.push(state.appointments[appointmentId]);
       }
       return appointments;
     }
   }
-  return [];    
+  return [];
 }
-  
 
+export function getInterview(state, interview) {
+  if (!interview) {
+    return null;
+  }
+  const interviewObject = {
+    student: interview.student,
+    interviewer: state.interviewers[interview.interviewer],
+  };
+  return interviewObject;
+}
