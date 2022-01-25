@@ -85,10 +85,7 @@ export default function Application(props) {
         ...state,
         appointments,
       });
-      // setState((prev) => ({
-      //   ...prev,
-      //   appointments,
-      // }));
+      
 
     });
   }
