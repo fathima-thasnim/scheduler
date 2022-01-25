@@ -25,14 +25,14 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-
+ console.log(props)
   function save(name, interviewer) {
     const interview = {
       student: name,
       interviewer
     };
      transition(SAVING)
-      props.bookInterview(props.id, interview)
+      props.bookInterview(props.id, interview, mode === CREATE)
          .then(() => {
           //  console.log("any string")
            transition(SHOW)
@@ -67,7 +67,7 @@ export default function Appointment(props) {
         {mode === SAVING && <Status message={"SAVING"} />}
         {mode === DELETING && <Status message={"DELETING"} />}
         {mode === CONFIRM && <Confirm message={"Are you sure you would like to Delete ? "} onCancel={back} onConfirm={deleteAppointment} />}
-        {mode === EDIT && <Form interviewer={props.interviewer} interviewers={props.interviewers} student={props.interview.student} onCancel={() => back()} onSave={save}/>}
+        {mode === EDIT && <Form interviewer={props.interview.interviewer.id} interviewers={props.interviewers} student={props.interview.student} onCancel={() => back()} onSave={save}/>}
         {mode === ERROR_SAVE && <Error message={"Can not save appointment"} onClose={back} />}
         {mode === ERROR_DELETE && <Error message={"Could not cancel appointment"} onClose={back} />}
       </article>

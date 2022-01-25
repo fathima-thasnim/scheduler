@@ -28,16 +28,40 @@ export default function useApplicationData() {
     });
   }, []);
 
-  function bookInterview(id, interview) {
+  function updateSpots(requestType) {
+    const days = [...state.days];
+    console.log(requestType);
+    
+    const dayIndex = days.findIndex((day) => day.name === state.day);
+    const day = days[dayIndex];
+    
+    if (requestType === "bookAppointment") {
+      day.spots -= 1;
+    } else {
+      day.spots += 1;
+    }
+    days[dayIndex] = { ...day };
+    setState((pre) => ({...pre, days}));
+    
+  }
+
+  function bookInterview(id, interview, isCreating) {
     const appointment = {
       ...state.appointments[id],
-      interview: { ...interview },
+      interview
     };
+    
+    // appointment.interview = {...interview}
+    console.log(appointment.interview) 
     const appointments = {
       ...state.appointments,
       [id]: appointment,
     };
     return axios.put(`/api/appointments/${id}`, { interview }).then((res) => {
+      if (isCreating) {
+        console.log("bookAppointment")
+        updateSpots("bookAppointment")
+      }
       setState({
         ...state,
         appointments,
@@ -56,6 +80,7 @@ export default function useApplicationData() {
     };
 
     return axios.delete(`/api/appointments/${id}`).then((res) => {
+      updateSpots();
       setState({
         ...state,
         appointments,
