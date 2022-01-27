@@ -26,8 +26,7 @@ export default function Form(props) {
     }
     setError("");
     props.onSave(student, interviewer);
-  };
-
+  }
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -42,10 +41,9 @@ export default function Form(props) {
             onChange={(event) => setStudent(event.target.value)}
             data-testid="student-name-input"
           />
-          
         </form>
         <section className="appointment__validation">{error}</section>
-        
+
         <InterviewerList
           interviewers={props.interviewers}
           value={interviewer}

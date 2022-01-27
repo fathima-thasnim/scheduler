@@ -23,28 +23,6 @@ export function getInterview(state, interview) {
   return interviewObject;
 }
 
-// export function getInterviewersForDay(state, dayName) {
-//   for (const day of state.days) {
-//     if (day.name === dayName) {
-//       const interviewersIds = day.appointments.map((appointmentId)=>{
-//         const appointment = state.appointments[appointmentId]
-//         return appointment
-//         // if (appointment.interview){
-//         //   return appointment.interview.interviewer
-//         // }
-//       });
-//       // console.log(day)
-//       const interviewers = [];
-//       for (const interviewersId of interviewersIds) {
-//         interviewers.push(state.interviewers[interviewersId]);
-//       }
-//       console.log(interviewers)
-//       return interviewers;
-//     }
-//   }
-//   return [];
-// }
-
 export function getInterviewersForDay(state, dayName) {
   for (const day of state.days) {
     if (day.name === dayName) {

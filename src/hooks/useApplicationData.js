@@ -17,8 +17,6 @@ export default function useApplicationData() {
       axios.get(`/api/appointments`),
       axios.get(`/api/interviewers`),
     ]).then((res) => {
-      // console.log(res);
-      // setDays(response.data)
       setState((prev) => ({
         ...prev,
         days: res[0].data,
@@ -31,36 +29,33 @@ export default function useApplicationData() {
   function updateSpots(requestType) {
     const days = [...state.days];
     console.log(requestType);
-    
+
     const dayIndex = days.findIndex((day) => day.name === state.day);
     const day = days[dayIndex];
-    
+
     if (requestType === "bookAppointment") {
       day.spots -= 1;
     } else {
       day.spots += 1;
     }
     days[dayIndex] = { ...day };
-    setState((pre) => ({...pre, days}));
-    
+    setState((pre) => ({ ...pre, days }));
   }
 
   function bookInterview(id, interview, isCreating) {
     const appointment = {
       ...state.appointments[id],
-      interview
+      interview,
     };
-    
-    // appointment.interview = {...interview}
-    console.log(appointment.interview) 
+
+    console.log(appointment.interview);
     const appointments = {
       ...state.appointments,
       [id]: appointment,
     };
     return axios.put(`/api/appointments/${id}`, { interview }).then((res) => {
       if (isCreating) {
-        console.log("bookAppointment")
-        updateSpots("bookAppointment")
+        updateSpots("bookAppointment");
       }
       setState({
         ...state,
