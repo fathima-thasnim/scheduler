@@ -25,17 +25,16 @@ npm run storybook
 
 ## Dependencies
 
-```sh
-axios
-storybook
-@testing-library/react-hooks
-react-test-renderer
-classnames
-node-sass
-cypress
-jest
-```
-<!-- ## Final Product
+- axios
+- storybook
+- @testing-library/react-hooks
+- react-test-renderer
+- classnames
+- node-sass
+- cypress
+- jest
 
-!["appointment form"]()
-!["appointment booked"]() -->
+## Final Product
+
+!["appointment form"](https://github.com/fathima-thasnim/scheduler/blob/master/docs/appointment-form.png)
+!["appointment booked"](https://github.com/fathima-thasnim/scheduler/blob/master/docs/appointment-booked.png)
